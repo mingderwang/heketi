@@ -1,0 +1,41 @@
+{
+    "apiVersion": "v1",
+    "kind": "PersistentVolumeClaim",
+    "metadata": {
+        "creationTimestamp": "2020-01-30T03:00:21Z",
+        "finalizers": [
+            "kubernetes.io/pvc-protection"
+        ],
+        "name": "myclaim",
+        "namespace": "default",
+        "resourceVersion": "506667",
+        "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/myclaim",
+        "uid": "9a6cd95d-ba75-4d69-9826-1f270a0db864"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "resources": {
+            "requests": {
+                "storage": "8Gi"
+            }
+        },
+        "selector": {
+            "matchExpressions": [
+                {
+                    "key": "environment",
+                    "operator": "In",
+                    "values": [
+                        "dev"
+                    ]
+                }
+            ],
+            "matchLabels": {
+                "release": "stable"
+            }
+        },
+        "storageClassName": "gluster-heketi",
+        "volumeMode": "Filesystem"
+    }
+}

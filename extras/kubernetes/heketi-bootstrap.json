@@ -30,7 +30,7 @@
     },
     {
       "kind": "Deployment",
-      "apiVersion": "extensions/v1beta1",
+      "apiVersion": "apps/v1",
       "metadata": {
         "name": "deploy-heketi",
         "labels": {
@@ -43,6 +43,11 @@
       },
       "spec": {
         "replicas": 1,
+        "selector": {
+          "matchLabels": {
+            "glusterfs": "heketi-pod"
+         }
+        },
         "template": {
           "metadata": {
             "name": "deploy-heketi",
@@ -56,7 +61,7 @@
             "serviceAccountName": "heketi-service-account",
             "containers": [
               {
-                "image": "heketi/heketi:dev",
+                "image": "heketi/heketi:latest",
                 "imagePullPolicy": "Always",
                 "name": "deploy-heketi",
                 "env": [
